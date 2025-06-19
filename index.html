@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Timer Asta Fantacalcio</title>
-<style>
-  body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
-  #timer {
-    font-size: 80px;
-    font-weight: bold;
-    margin: 20px;
-    transition: color 0.3s ease;
-  }
-  .warning {
-    color: red;
-    animation: shake 0.5s infinite alternate;
-  }
-  @keyframes shake {
-    0% { transform: translateX(0); }
-    50% { transform: translateX(5px); }
-    100% { transform: translateX(-5px); }
-  }
-  button {
-    font-size: 20px;
-    padding: 10px 25px;
-    margin: 10px;
-    cursor: pointer;
-  }
-  #message {
-    font-size: 24px;
-    margin-top: 30px;
-    min-height: 40px;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Timer Asta Fantacalcio</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
+    #timer {
+      font-size: 80px;
+      font-weight: bold;
+      margin: 20px;
+      transition: color 0.3s ease;
+    }
+    .warning {
+      color: red;
+      animation: shake 0.5s infinite alternate;
+    }
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(5px); }
+      100% { transform: translateX(-5px); }
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 25px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    #message {
+      font-size: 24px;
+      margin-top: 30px;
+      min-height: 40px;
+    }
+  </style>
 </head>
 <body>
 
@@ -57,17 +57,21 @@
 
   function updateTimer() {
     timerEl.textContent = timeLeft;
+
     if (timeLeft <= 3 && timeLeft > 0) {
       timerEl.classList.add('warning');
     } else {
       timerEl.classList.remove('warning');
     }
+
     if (timeLeft === 0) {
       clearInterval(timerInterval);
       messageEl.textContent = "Tempo scaduto! Prossima offerta.";
       rilancioBtn.disabled = true;
       astaChiusaBtn.disabled = false;
+      return; // Impedisce di andare sotto zero
     }
+
     timeLeft--;
   }
 
